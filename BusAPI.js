@@ -19,7 +19,7 @@ class BusAPI extends RESTDataSource {
   }
 
   getEncryptedKey() {
-    let key = API_KEY + format(new Date(), "YYYYMMDDHH");
+    const key = API_KEY + format(new Date(), "YYYYMMDDHH");
     return crypto
       .createHash("md5")
       .update(key)
@@ -33,15 +33,9 @@ class BusAPI extends RESTDataSource {
       const gunzip = zlib.createGunzip();
       request({ url, headers }).pipe(gunzip);
       gunzip
-        .on("data", data => {
-          buffer.push(data.toString());
-        })
-        .on("finish", () => {
-          return res(buffer.join(""));
-        })
-        .on("error", e => {
-          return rej(e);
-        });
+        .on("data", data => buffer.push(data.toString()))
+        .on("finish", () => res(buffer.join("")))
+        .on("error", e => rej(e));
     });
   }
 
