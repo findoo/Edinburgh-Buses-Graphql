@@ -10,7 +10,8 @@
     "crypto": "^1.0.1",
     "date-fns": "^1.30.1",
     "graphql": "^14.0.2",
-    "papaparse": "^4.6.2"
+    "papaparse": "^4.6.2",
+    "request": "^2.88.0"
   },
   "scripts": {
     "start": "node server.js"
